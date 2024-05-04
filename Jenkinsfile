@@ -2,20 +2,44 @@ pipeline {
     agent any
 
     stages {
-        stage('App-Build') {
+        stage('android-app-build') {
             steps {
-                echo 'Build Applicationn'
+                echo 'Building Android application...'
+                // Add commands to build the Android application
+            }
+            post {
+                failure {
+                    mail body: "Android build failed for ${env.JOB_NAME}", subject: "Android Build Failed", to: "your-email@example.com"
+                }
             }
         }
-        stage('App-Test') {
+        stage('android-app-test-dummy') {
             steps {
-                echo 'Test Application'
+                echo 'Running dummy tests for Android application...'
+                // Add commands to run dummy tests
+            }
+            post {
+                failure {
+                    mail body: "Dummy tests failed for ${env.JOB_NAME}", subject: "Dummy Tests Failed", to: "your-email@example.com"
+                }
             }
         }
-        stage('App-Deploy') {
+        stage('android-app-deployment') {
             steps {
-                echo 'Deploy Application'
+                echo 'Deploying Android application...'
+                // Add commands to deploy the Android application
             }
+            post {
+                failure {
+                    mail body: "Android deployment failed for ${env.JOB_NAME}", subject: "Android Deployment Failed", to: "your-email@example.com"
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            mail body: "Android pipeline succeeded for ${env.JOB_NAME}", subject: "Android Pipeline Succeeded", to: "your-email@example.com"
         }
     }
 }
