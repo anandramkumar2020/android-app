@@ -9,7 +9,8 @@ pipeline {
             }
             post {
                 failure {
-                    mail body: "Android build failed for ${env.JOB_NAME}", subject: "Android Build Failed", to: "your-email@example.com"
+                    echo 'Building Android application failed...'
+                    //mail body: "Android build failed for ${env.JOB_NAME}", subject: "Android Build Failed", to: "your-email@example.com"
                 }
             }
         }
@@ -20,7 +21,8 @@ pipeline {
             }
             post {
                 failure {
-                    mail body: "Dummy tests failed for ${env.JOB_NAME}", subject: "Dummy Tests Failed", to: "your-email@example.com"
+                    echo 'Running dummy tests for Android application failed...'
+                    //mail body: "Dummy tests failed for ${env.JOB_NAME}", subject: "Dummy Tests Failed", to: "your-email@example.com"
                 }
             }
         }
@@ -31,7 +33,8 @@ pipeline {
             }
             post {
                 failure {
-                    mail body: "Android deployment failed for ${env.JOB_NAME}", subject: "Android Deployment Failed", to: "your-email@example.com"
+                    echo 'Deploying Android application failed...'
+                    //mail body: "Android deployment failed for ${env.JOB_NAME}", subject: "Android Deployment Failed", to: "your-email@example.com"
                 }
             }
         }
@@ -39,7 +42,8 @@ pipeline {
 
     post {
         success {
-            mail body: "Android pipeline succeeded for ${env.JOB_NAME}", subject: "Android Pipeline Succeeded", to: "your-email@example.com"
+            echo 'Android pipeline succeeded...'
+            //mail body: "Android pipeline succeeded for ${env.JOB_NAME}", subject: "Android Pipeline Succeeded", to: "your-email@example.com"
         }
     }
 }
