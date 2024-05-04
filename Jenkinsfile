@@ -26,16 +26,6 @@ pipeline {
                 }
             }
         }
-        stage('Create Report') {
-            steps {
-                echo 'Hello world' >> hello.txt
-            }
-        }
-        stage('Upload Test report') {
-            steps {
-                slackUploadFile filePath: 'hello.txt', initialComment: 'Here is your file'
-            }
-        }
         stage('Deploy') {
             steps {
                 echo 'Deploying Android application...'
