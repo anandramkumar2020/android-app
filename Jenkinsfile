@@ -29,7 +29,7 @@ pipeline {
         stage('android-app-deployment') {
             steps {
                 echo 'Deploying Android application...'
-                build(job: 'android-app-deployment')
+                build(job: 'android-app-deployement')
             }
             post {
                 failure {
