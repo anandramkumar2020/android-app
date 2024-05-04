@@ -43,6 +43,7 @@ pipeline {
     post {
         success {
             echo 'Android pipeline succeeded...'
+            slackSend channel: 'android-ci-cd-updates', message: 'Android pipeline succeeded for ${env.JOB_NAME} ${env.BUILD_NUMBER} {env.BUILD_URL}'
             mail body: "Android pipeline succeeded for ${env.JOB_NAME}", subject: "Android Pipeline Succeeded", to: "mystudies9633@gmail.com"
         }
     }
