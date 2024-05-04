@@ -18,6 +18,7 @@ pipeline {
             steps {
                 echo 'Running dummy tests for Android application...'
                 build(job: 'android-app-test-dummy')
+                slackUploadFile filePath: 'C:\\JenkinsHome\\workspace\\android-app-test\\testreports\\index.html', initialComment: 'Test results '
             }
             post {
                 failure {
