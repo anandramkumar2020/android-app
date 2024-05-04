@@ -1,7 +1,7 @@
 # Android App
 
 
-Welcome to the Android App repository!!@!
+Welcome to the Android App repository!!
 
 ## Overview
 
