@@ -17,14 +17,23 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running dummy tests for Android application...'
-                build(job: 'android-app-test-dummy')
-                slackUploadFile filePath: 'C:\\JenkinsHome\\workspace\\android-app-test\\testreports\\index.html', initialComment: 'Test results '
+                build(job: 'android-app-test-dummy')                
             }
             post {
                 failure {
                     echo 'Running dummy tests for Android application failed...'
                     mail body: "Dummy tests failed for ${env.JOB_NAME}", subject: "Dummy Tests Failed", to: "mystudies9633@gmail.com"
                 }
+            }
+        }
+        stage('Create Report') {
+            steps {
+                echo 'Hello world' >> hello.txt
+            }
+        }
+        stage('Upload Test report') {
+            steps {
+                slackUploadFile filePath: 'hello.txt', initialComment: 'Here is your file'
             }
         }
         stage('Deploy') {
@@ -38,7 +47,7 @@ pipeline {
                     mail body: "Android deployment failed for ${env.JOB_NAME}", subject: "Android Deployment Failed", to: "mystudies9633@gmail.com"
                 }
             }
-        }
+        }        
     }
 
     post {
