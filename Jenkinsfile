@@ -20,13 +20,13 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Running dummy tests for Android application...'
-                build(job: 'android-app-test-dummy')                
+                echo 'Running tests for Android application...'
+                build(job: 'android-app-test')                
             }
             post {
                 failure {
-                    echo 'Running dummy tests for Android application failed...'
-                    mail body: "Dummy tests failed for ${env.JOB_NAME}", subject: "Dummy Tests Failed", to: "mystudies9633@gmail.com"
+                    echo 'Running tests for Android application failed...'
+                    mail body: "Tests failed for ${env.JOB_NAME}", subject: "Tests Failed", to: "mystudies9633@gmail.com"
                 }
             }
         }
