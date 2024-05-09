@@ -30,6 +30,25 @@ pipeline {
                 }
             }
         }
+
+        stage('Post-Test') {
+            steps {
+                echo 'Running Post-Test for Android application...'
+                echo 'Copy Test report ...'
+                bat 'copyreport.bat'
+                sleep 3000
+                slackUploadFile filePath: 'index.html', initialComment: 'Test report'
+                mail body: "Post-Test Activities completed  ${env.JOB_NAME}", subject: "Post-Test Status", to: "mystudies9633@gmail.com"
+                
+            }
+            post {
+                failure {
+                    echo 'Running Post-Test for Android application failed...'
+                    mail body: "Post-Test Activities failed  ${env.JOB_NAME}", subject: "Post-Test Status", to: "mystudies9633@gmail.com"
+                }
+            }
+        }
+
         stage('Release') {
             steps {
                 echo 'Release Android application...'
