@@ -18,27 +18,27 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
+        stage('Deploy and Test') {
             steps {
-                echo 'Running tests for Android application...'
+                echo 'Running Deploy & Test for Android application...'
                 build(job: 'android-app-test')                
             }
             post {
                 failure {
-                    echo 'Running tests for Android application failed...'
-                    mail body: "Tests failed for ${env.JOB_NAME}", subject: "Tests Failed", to: "mystudies9633@gmail.com"
+                    echo 'Running Deploy & Test for Android application failed...'
+                    mail body: "Deploy & Test failed for ${env.JOB_NAME}", subject: "Deploy & Test Failed", to: "mystudies9633@gmail.com"
                 }
             }
         }
-        stage('Deploy') {
+        stage('Release') {
             steps {
-                echo 'Deploying Android application...'
+                echo 'Release Android application...'
                 build(job: 'android-app-deployement')
             }
             post {
                 failure {
-                    echo 'Deploying Android application failed...'
-                    mail body: "Android deployment failed for ${env.JOB_NAME}", subject: "Android Deployment Failed", to: "mystudies9633@gmail.com"
+                    echo 'Replease Android application failed...'
+                    mail body: "Android app release failed for ${env.JOB_NAME}", subject: "Android app release failed", to: "mystudies9633@gmail.com"
                 }
             }
         }        
