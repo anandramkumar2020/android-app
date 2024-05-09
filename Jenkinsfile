@@ -36,7 +36,7 @@ pipeline {
                 echo 'Running Post-Test for Android application...'
                 echo 'Copy Test report ...'
                 bat 'copyreport.bat'
-                sleep 3000
+                sleep 3
                 slackUploadFile filePath: 'index.html', initialComment: 'Test report'
                 mail body: "Post-Test Activities completed  ${env.JOB_NAME}", subject: "Post-Test Status", to: "mystudies9633@gmail.com"
                 
